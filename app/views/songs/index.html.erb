@@ -1,0 +1,17 @@
+<h1> SONGS </h1>
+
+<ul>
+    <% @songs.each do |s| %>
+    <li>
+        <p class="title"> <%= s.title %> </p>
+        <p class="artist"> Artist: <%= s.artist %> </p>
+        <p class="album"> Album: <%= s.album%> </p>
+        <p class="heart"> ♥ </p>
+    <hr>
+    </li>   
+    <% end %>
+</ul>
+
+<p> DON'T SEE A CERTAIN SONG?</p>
+<p> <span>¡Ay, caramba!</span> </p>
+<%= link_to 'ADD A SONG +', new_song_path %>

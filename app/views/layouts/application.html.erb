@@ -1,15 +1,35 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TheLatinBeat</title>
+    <title>The Latin Beat</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+<link href="https://fonts.googleapis.com/css?family=Courgette|Glegoo" rel="stylesheet">    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <nav>
+      <% if current_user %>
+        <%= link_to '~ THE LATIN BEAT ~', pages_browse_path%>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        BIENVENIDOS, <%= current_user.name %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to '♥' ,  song_favorites_path(:song_id) %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'MY SONGS', songs_path %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;        
+        <%= link_to 'LOG OUT', session_path('durkey'), method: :delete %>
+      <% else %>
+        <%= link_to '~ THE LATIN BEAT ~', pages_browse_path%>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'LOG IN', login_path %>
+        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <%= link_to 'SIGN UP', new_user_path %>
+      <% end %>
+    </nav>
+    <div id="yellow"> </div>
     <%= yield %>
   </body>
 </html>

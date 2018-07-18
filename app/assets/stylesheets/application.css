@@ -13,3 +13,125 @@
  *= require_tree .
  *= require_self
  */
+
+ body {
+    background-color: #DC7B5B;
+    color: #722119;
+    margin: 0px;
+    font-family: 'Glegoo', serif;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: center;
+    /* display: flex;
+    justify-content: center; */
+  }
+  
+  nav, ol, ul, td {
+    font-family: 'Glegoo', serif;
+    font-size: 20px;
+    line-height: 30px;
+  }
+  
+  pre {
+    background-color: #eee;
+    padding: 10px;
+    font-size: 11px;
+  }
+  
+  a {
+    color: #722119;
+    text-decoration: none;
+  
+    &:visited {
+      color: #666;
+    }
+  
+    &:hover {
+      color: #fff;
+      background-color: #000;
+    }
+  }
+  
+  th {
+    padding-bottom: 5px;
+  }
+  
+  td {
+    padding: 0 5px 7px;
+  }
+
+div .field {
+margin: 0 auto;
+  }
+  
+  #notice {
+    color: green;
+  }
+  
+  .field_with_errors {
+    padding: 2px;
+    background-color: red;
+    display: table;
+  }
+  
+  #error_explanation {
+    width: 450px;
+    border: 2px solid red;
+    padding: 7px 7px 0;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+  }
+
+h2 {
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 5px 10px 15px;
+  font-size: 30px;
+  margin: 60px -7px 0;
+  color: #722119;
+}
+  
+ul li {
+  font-size: 12px;
+  list-style: square;
+  background-color: rgba(255, 248, 240, 1); 
+  list-style-type: none;
+  margin: 0 auto 20px auto;
+  
+}
+
+
+label {
+  display: block;
+}
+  
+
+/* This is my own styling */
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    background-color:#81C4F8;
+    text-decoration: none;
+    padding: 15px;
+}
+
+h1 {
+  color: #EAD247;
+  text-align: center;
+  font-size: 45px;
+}
+
+#yellow {
+  background-color: #EAD247;
+  padding: 2px;
+}
+
+span {
+  background-color: #EAD247;
+  font-family: 'Courgette', cursive;
+}
+
+.title {
+  font-size: 20px;
+}

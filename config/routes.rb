@@ -1,3 +1,23 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+root 'pages#home'
+
+get '/pages/browse', to: 'pages#browse'
+
+resources :users, only: [:new, :create]
+
+resources :sessions, only: [:new, :create, :destroy]
+
+resources :regions 
+
+resources :genres
+
+resources :songs do
+    resources :favorites, shallow: true
+end
+
+get '/login', to: 'sessions#new'
+
+get '/logout', to: 'sessions#destroy'
+
 end

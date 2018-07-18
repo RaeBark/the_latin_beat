@@ -1,0 +1,50 @@
+<%= form_with(model: @song, local: false) do |form| %>
+  <% if @song.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
+
+      <ul>
+      <% @song.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :artist %>
+    <%= form.text_field :artist %>
+  </div>
+
+  <div class="field">
+    <%= form.label :album %>
+    <%= form.text_field :album %>
+  </div>
+<!-- THESE need to be drop down menus -->
+    <div class="field">
+    <%= form.label :region %>
+    <%= form.select(:region_id, content_tag(:option, 'Choose REGION', value: '') + options_from_collection_for_select(Region.all, :id, :name))%>
+    </div>
+
+    <div class="field">
+    <%= form.label :genre %>
+    <%= form.select(:genre_id, content_tag(:option, 'Choose GENRE', value: '') + options_from_collection_for_select(Genre.all, :id, :name))%>
+    </div>
+<!-- -GENRE
+
+- REGION 
+
+-->
+
+  <div class="actions">
+    <%= form.submit 'Add Song'%>
+    <% if @song.save %>
+        <% redirect_to songs_path %>
+    <% end %>
+  </div>
+<% end %>

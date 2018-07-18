@@ -1,0 +1,10 @@
+<h1> BROWSE SONGS BY </h1>
+<h2> REGION  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <span>&nbsp;~&nbsp; or &nbsp;~&nbsp;</span>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; GENRE</h2>
+
+<%= form_tag({controller: :songs, action: :index}, {method: :get}) do  %>
+    <%= select_tag(:region_id, content_tag(:option, 'Select REGION', value: '') + options_from_collection_for_select(Region.all, :id, :name))%>
+
+    <%= select_tag(:genre_id, content_tag(:option, 'Select GENRE', value: '') + options_from_collection_for_select(Genre.all, :id, :name))%>
+    <br>
+    <%= submit_tag 'Go' %>
+<% end %>
