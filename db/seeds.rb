@@ -22,12 +22,40 @@ r = Region.create!([
     {name: 'Andean States', countries: 'Bolivia, Colombia, Ecudador, Paraguay, Peru, Venezuela'},
     {name: 'Southern Cone', countries: 'Argentina, Chile, Uruguay'}])
 
+spain = Region.find_by(name: 'Spain')
+caribbean = Region.find_by(name: 'Caribbean')
+brazil = Region.find_by(name: 'Brazil')
+north_america = Region.find_by(name: 'North America')
+central_america = Region.find_by(name: 'Central America')
+andean_states = Region.find_by(name: 'Andean States')
+southern_cone = Region.find_by(name: 'Southern Cone')
+
+
+flamenco = Genre.find_by( name: 'Flamenco')
+salsa = Genre.find_by( name: 'Salsa')
+cumbia = Genre.find_by( name: 'Cumbia')
+reggaeton = Genre.find_by( name: 'Reggaeton')
+bachata = Genre.find_by( name: 'Bachata')
+samba = Genre.find_by( name: 'Samba')
+tango = Genre.find_by( name: 'Tango')
+merengue = Genre.find_by( name: 'Merengue')
+son = Genre.find_by( name: 'Son')
+mambo = Genre.find_by( name: 'Mambo')
+guajira = Genre.find_by( name: 'Guajira')
+rumba = Genre.find_by( name: 'Rumba')
+
+user1 = User.first.id
+
+
+
+
 
 s = Song.create!([
-    {title: 'Entre Dos Aguas', artist: 'Paco de Lucía', album: 'Entre Dos Aguas', user_id: 4, region_id: 9, genre_id: 14, favorited: false},
-    {title: 'O Mar Serenou', artist: 'Clara Nunes', album: 'Conto de Areia', user_id: 4, region_id: 11, genre_id: 19, favorited: false},
-    {title: 'Este Es el Rey', artist: "La Juan D'Arienzo", album: 'Cortando Clavos', user_id: 4, region_id: 15, genre_id: 20, favorited: false},
-    {title: 'Acid', artist: 'Ray Barretto', album: 'Acid', user_id: 4, region_id: 10, genre_id: 24, favorited: false},
-    {title: 'La Vida Es Un Carnaval', artist: 'Celia Cruz', album: 'Mi Vida Es Cantar', user_id: 4, region_id: 10, genre_id: 15, favorited: false},
-    {title: 'Que Nadie Sepa Mi Sufrir', artist: 'La Sonora Dinamita', album: 'Margarita Y Sus Grandes Exitos', user_id: 4, region_id: 14, genre_id: 16, favorited: false}
+    {title: 'Entre Dos Aguas', artist: 'Paco de Lucía', album: 'Entre Dos Aguas', user_id: user1 , region_id: spain.id, genre_id: flamenco.id, favorited: false},
+    {title: 'O Mar Serenou', artist: 'Clara Nunes', album: 'Conto de Areia', user_id: user1, region_id: brazil.id, genre_id: samba.id, favorited: false},
+    {title: 'Este Es el Rey', artist: "La Juan D'Arienzo", album: 'Cortando Clavos', user_id: user1, region_id: southern_cone.id, genre_id: tango.id, favorited: false},
+    {title: 'Acid', artist: 'Ray Barretto', album: 'Acid', user_id: user1, region_id: caribbean.id, genre_id: guajira.id, favorited: false},
+    {title: 'La Vida Es Un Carnaval', artist: 'Celia Cruz', album: 'Mi Vida Es Cantar', user_id: user1, region_id: caribbean.id, genre_id: salsa.id, favorited: false},
+    {title: 'Que Nadie Sepa Mi Sufrir', artist: 'La Sonora Dinamita', album: 'Margarita Y Sus Grandes Exitos', user_id: user1, region_id: andean_states.id, genre_id: cumbia.id, favorited: false}
 ])
+

@@ -1,0 +1,11 @@
+<h1> MY SONGS </h1> 
+<ul>
+    <% @songs.each do |s| %>
+    <li>
+        <p class="title"> <%= s.title %> </p>
+        <p class="artist"> Artist: <%= s.artist %> </p>
+        <p class="album"> Album: <%= s.album %> </p>
+        <p> <%= link_to 'Edit this song', edit_song_path(s) %> </p>
+    </li>   
+    <% end %>
+</ul>

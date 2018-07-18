@@ -12,18 +12,17 @@
   <body>
     <nav>
       <% if current_user %>
-        <%= link_to '~ THE LATIN BEAT ~', pages_browse_path%>
+        <div id="logo1"><%= link_to '~ THE LATIN BEAT ~', pages_browse_path%></div>
+        &nbsp;BIENVENIDOS, <%= current_user.name %>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        BIENVENIDOS, <%= current_user.name %>
+        <%= link_to '♥' ,  user_favorites_path(current_user.id) %>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <%= link_to '♥' ,  song_favorites_path(:song_id) %>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <%= link_to 'MY SONGS', songs_path %>
+        <%= link_to 'MY SONGS', my_songs_path %>
         &nbsp;&nbsp;|&nbsp;&nbsp;        
         <%= link_to 'LOG OUT', session_path('durkey'), method: :delete %>
+        </div>
       <% else %>
-        <%= link_to '~ THE LATIN BEAT ~', pages_browse_path%>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
+        <div id="logo2"><%= link_to '~ THE LATIN BEAT ~', pages_browse_path%></div>
         <%= link_to 'LOG IN', login_path %>
         &nbsp;&nbsp;|&nbsp;&nbsp;
         <%= link_to 'SIGN UP', new_user_path %>
