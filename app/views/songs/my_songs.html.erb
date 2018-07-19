@@ -5,7 +5,12 @@
         <p class="title"> <%= s.title %> </p>
         <p class="artist"> Artist: <%= s.artist %> </p>
         <p class="album"> Album: <%= s.album %> </p>
-        <p> <%= link_to 'Edit this song', edit_song_path(s) %> </p>
+        <p class="genre"> Genre: <%= s.genre.name%> </p>
+        <p class="region"> Region: <%= s.region.name%> </p>
+        <% unless s.album_cover.attachment.nil? %>
+            <%= image_tag s.album_cover.service_url %></p>
+        <% end %>    
+        <p> <%= link_to 'Edit this song', edit_song_path(s) %></p>
     </li>   
     <% end %>
 </ul>

@@ -6,9 +6,12 @@
         <p class="title"> <%= s.title %> </p>
         <p class="artist"> Artist: <%= s.artist %> </p>
         <p class="album"> Album: <%= s.album%> </p>
+        <p class="genre"> Genre: <%= s.genre.name%> </p>
+        <p class="region"> Region: <%= s.region.name%> </p>
+        <% unless s.album_cover.attachment.nil? %>
+            <%= image_tag s.album_cover.service_url %>
+        <% end %>    
         <% if !current_user.favorite_songs.exists?(s.id)%>
-            <% p '*' * 100 %>
-            <% p params %>
             <p class="heart">¿Te gusta? <%= link_to '♥', favorites_user_path(current_user, song_id: s.id, region_id: params[:region_id], genre_id: params[:genre_id]), method: :put %></p>
         <% else%>
             <p> ♥ </p>
@@ -18,5 +21,5 @@
 </ul>
 
 <p> DON'T SEE A CERTAIN SONG?</p>
-<p> <span>¡Ay, caramba!</span> </p>
+<p> <span id="ohno">¡Ay, caramba!</span> </p>
 <%= link_to 'ADD A SONG +', new_song_path %>

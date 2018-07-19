@@ -1,13 +1,19 @@
 <h1> faved songs </h1>
 
-<ul>
+<% if @favorite_songs.empty? %>
+    <p> No favorited songs! Go find some! </p>
+    <%= link_to 'Browse Songs',  pages_browse_path %>
+<% else %>
+    <ul>
     <% @favorite_songs.each do |fave| %>
         <li>
         <p class="title"> <%= fave.title %> </p>
         <p class="artist"> Artist: <%= fave.artist %> </p>
         <p class="album"> Album: <%= fave.album%> </p>
+        <p class="genre"> Genre: <%= fave.genre.name%> </p>
+        <p class="region"> Region: <%= fave.region.name%> </p>
         </li>
         <p> <%= link_to "DELETE", user_favorite_path(id: current_user.id, song_id: fave.id), method: :delete, data: {confirm: 'Are you sure?'}%> <p>
-    <% end %>
-
-</ul>
+        <% end %>
+    </ul>
+<% end %>   

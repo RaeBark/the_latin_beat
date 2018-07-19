@@ -18,9 +18,6 @@ class UsersController < ApplicationController
       song = Song.find(params[:song_id]) 
       current_user.favorite_songs << song
       redirect_to songs_path(region_id: params[:region_id], genre_id: params[:genre_id])
-      # p '#' * 100
-      # p params
-      # p '#' * 100
     end
     
     private

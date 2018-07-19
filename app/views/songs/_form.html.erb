@@ -1,4 +1,4 @@
-<%= form_with(model: @song, local: false) do |form| %>
+<%= form_with(model: @song, local: true) do |form| %>
   <% if @song.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@song.errors.count, "error") %> prohibited this song from being saved:</h2>
@@ -36,6 +36,6 @@
     <%= form.select(:genre_id, content_tag(:option, 'Choose GENRE', value: '') + options_from_collection_for_select(Genre.all, :id, :name))%>
     </div>
   <div class="actions">
-    <%= form.submit 'Add Song'%>
+    <%= form.submit 'Update Song'%>
   </div>
 <% end %>

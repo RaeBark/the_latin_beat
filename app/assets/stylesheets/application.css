@@ -154,3 +154,12 @@ input {
   margin: 8px 0;
   box-sizing: border-box;
 }
+
+#ohno {
+  font-size: 20px;
+}
+
+img {
+  position: relative;
+  width: 20%;
+}
