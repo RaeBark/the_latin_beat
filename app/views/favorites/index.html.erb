@@ -12,7 +12,11 @@
         <p class="album"> Album: <%= fave.album%> </p>
         <p class="genre"> Genre: <%= fave.genre.name%> </p>
         <p class="region"> Region: <%= fave.region.name%> </p>
-        </li>
+        <% unless fave.album_cover.attachment.nil? %>
+            <%= image_tag fave.album_cover.service_url %>
+        <% else %>
+            <%= image_tag 'album-cover.png' %>
+        <% end %> 
         <p> <%= link_to "DELETE", user_favorite_path(id: current_user.id, song_id: fave.id), method: :delete, data: {confirm: 'Are you sure?'}%> <p>
         <% end %>
     </ul>

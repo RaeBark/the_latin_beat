@@ -25,5 +25,13 @@
   <%= @song.region.name %>
 </p>
 
+<p>
+  <% unless @song.album_cover.attachment.nil? %>
+      <%= image_tag @song.album_cover.service_url %>
+  <% else %>
+      <%= image_tag 'album-cover.png' %>
+  <% end %> 
+</p>
+
 <%= link_to 'Edit', edit_song_path(@song) %> |
-<%= link_to 'Back', songs_path %>
+<%= link_to 'Back', my_songs_path %>

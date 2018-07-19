@@ -1,5 +1,22 @@
 <h1> SONGS </h1>
-
+<p> 
+    <% if @heading %>
+        <p>Viewing songs for:</p>
+        <%= @heading %> 
+    <%end%>
+</p>
+<p> 
+    <% if @list_countries %>
+        <p> Countries include: </p>
+        <%= ' ~ ' + @list_countries + ' ~ ' %> 
+    <%end%>
+</p>
+<%= form_tag('/songs', method: :get) do %>
+<%= hidden_field_tag :genre_id, params[:genre_id]%>
+<%= hidden_field_tag :region_id, params[:region_id]%>
+<%= label_tag 'Sort songs by:'%>
+ <%= select_tag 'sort_by', options_for_select(['Title', 'Artist', 'Album']), prompt: 'Select one', onchange: 'this.form.submit();'%>
+<% end %>
 <ul>
     <% @songs.each do |s| %>
     <li>
@@ -10,6 +27,8 @@
         <p class="region"> Region: <%= s.region.name%> </p>
         <% unless s.album_cover.attachment.nil? %>
             <%= image_tag s.album_cover.service_url %>
+        <% else %>
+            <%= image_tag 'album-cover.png' %>
         <% end %>    
         <% if !current_user.favorite_songs.exists?(s.id)%>
             <p class="heart">¿Te gusta? <%= link_to '♥', favorites_user_path(current_user, song_id: s.id, region_id: params[:region_id], genre_id: params[:genre_id]), method: :put %></p>

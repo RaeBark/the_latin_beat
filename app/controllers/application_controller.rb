@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
     end
 
     def authorize
-        redirect_to login_path, alert: 'Not authorized - you tricky dog!' unless current_user
+        redirect_to login_path, alert: 'Log in to access songs, ¡por favor!' unless current_user
     end
+
 end

@@ -1,25 +1,100 @@
 class SongsController < ApplicationController
     before_action :set_song, only: [:show, :edit, :update, :destroy]
+    before_action :authorize
 
     def index
-        if !params[:genre_id] && !params[:region_id]
-            @songs = Song.all
-            return
+
+        @songs = Song.all 
+        @header = ''
+
+        if params[:sort_by]
+            p '#' * 100
+            if params[:sort_by] == 'Artist'
+                @songs = @songs.order('artist ASC')
+            elsif params[:sort_by] == 'Title'
+                @songs = @songs.order('title ASC')
+            elsif params[:sort_by] == 'Album'
+                @songs = @songs.order('album ASC')
+            end
         end 
 
+        if !params[:region_id].blank? && !params[:genre_id].blank?
+            p '!' * 100
+            @songs = @songs.where(region_id: params[:region_id], genre_id: params[:genre_id])
+            @heading = ' ~ ' + Region.find(params[:region_id]).name + ' ~  &  ~ ' + Genre.find(params[:genre_id]).name + ' ~ ' 
+            @list_countries = Region.find(params[:region_id]).countries 
+        end 
 
-        if (params[:region_id] != "" && params[:genre_id] != "")
-            @songs = Song.where(region_id: params[:region_id], genre_id: params[:genre_id]) #&& (genre_id: params[:genre_id])
-        elsif params[:region_id] != ""
-            @songs = Song.where(region_id: params[:region_id])
-        elsif params[:genre_id] != "" 
-            @songs = Song.where(genre_id: params[:genre_id])
-        elsif !params[:genre_id] && !params[:region_id]
-            p '$' * 100
-            @songs = Song.all
-        else
-            @songs = Song.all
+        if !params[:region_id].blank? && params[:genre_id].blank?
+            p '@' * 100
+            @songs = @songs.where(region_id: params[:region_id])
+            @heading = ' ~ ' + Region.find(params[:region_id]).name + ' ~ ' 
+            @list_countries = Region.find(params[:region_id]).countries
         end
+
+        if !params[:genre_id].blank? && params[:region_id].blank?
+            p '$' * 100
+            @songs = @songs.where(genre_id: params[:genre_id])
+            @heading = ' ~ ' + Genre.find(params[:genre_id]).name + ' ~ '
+        end
+
+        if params[:genre_id].blank? && params[:region_id].blank?
+            p '%' * 100
+            @songs = @songs
+        end
+
+        if !params[:region_id].blank? && !params[:genre_id].blank? && !params[:sort_by].blank?
+            p '*' * 100
+            _attr = params[:sort_by].downcase
+            @songs = @songs.where(region_id: params[:region_id], genre_id: params[:genre_id]).order("#{_attr} ASC")
+        end
+
+        if params[:sort_by].blank? && params[:genre_id].blank? && params[:region_id].blank?
+            p '&' * 100
+            @songs = @songs
+        end
+
+
+        # if !params[:genre_id] && !params[:region_id] && !params[:sort_by]
+        #     @songs = Song.all
+        #     # return
+        # end 
+
+
+        # if (params[:region_id] != "" && params[:genre_id] != "")
+        #     @songs = Song.where(region_id: params[:region_id], genre_id: params[:genre_id]) #&& (genre_id: params[:genre_id])
+        #     @heading = ' ~ ' + Region.find(params[:region_id]).name + ' ~  &  ~ ' + Genre.find(params[:genre_id]).name + ' ~ ' 
+        #     @list_countries = Region.find(params[:region_id]).countries
+        # elsif params[:region_id] != "" 
+        #     @songs = Song.where(region_id: params[:region_id])
+        #     @heading = ' ~ ' + Region.find(params[:region_id]).name + ' ~ ' 
+        #     @list_countries = Region.find(params[:region_id]).countries
+        # elsif params[:genre_id] != "" 
+        #     @songs = Song.where(genre_id: params[:genre_id])
+        #     @heading = ' ~ ' + Genre.find(params[:genre_id]).name + ' ~ '
+        # elsif !params[:genre_id] && !params[:region_id]
+        #     @songs = Song.all
+        # elsif !params[:genre_id] && !params[:region_id] 
+        #     @songs = Song.all
+        #     # return 
+        # elsif params[:sort_by] 
+        #     @heading = ''
+        # else
+        #     @songs = Song.all
+        # end
+
+        # if params[:sort_by] 
+        #     if params[:sort_by] == 'Artist'
+        #         p '#' * 100
+        #         @songs = @songs.order('artist ASC')
+        #     elsif params[:sort_by] == 'Title'
+        #         @songs = @songs.order('title ASC')
+        #     elsif params[:sort_by] == 'Album'
+        #         @songs = @songs.order('album ASC')
+        #     end
+        # end
+
+
     end
 
     def new
@@ -71,6 +146,6 @@ class SongsController < ApplicationController
     end
 
     def song_params
-        params.require(:song).permit(:title, :artist, :album, :genre_id, :region_id, :album_cover)
+        params.require(:song).permit(:title, :artist, :album, :genre_id, :region_id, :album_cover, :sort_by)
     end
 end

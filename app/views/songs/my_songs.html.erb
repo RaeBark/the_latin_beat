@@ -8,7 +8,9 @@
         <p class="genre"> Genre: <%= s.genre.name%> </p>
         <p class="region"> Region: <%= s.region.name%> </p>
         <% unless s.album_cover.attachment.nil? %>
-            <%= image_tag s.album_cover.service_url %></p>
+            <%= image_tag s.album_cover.service_url %>
+        <% else %>
+            <%= image_tag 'album-cover.png' %>
         <% end %>    
         <p> <%= link_to 'Edit this song', edit_song_path(s) %></p>
     </li>   
