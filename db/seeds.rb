@@ -9,7 +9,7 @@
 Genre.destroy_all 
 Region.destroy_all
 Song.destroy_all
-
+User.destroy_all
 
 g = Genre.create!([{name: 'Flamenco'}, {name: 'Salsa'}, {name: 'Cumbia'}, {name: 'Reggaeton'}, {name: 'Bachata'}, {name: 'Samba'}, {name: 'Tango'}, {name: 'Merengue'}, {name: 'Son'}, {name: 'Mambo'}, {name: 'Guajira'}, {name: 'Rumba'}])
 
@@ -45,17 +45,17 @@ mambo = Genre.find_by( name: 'Mambo')
 guajira = Genre.find_by( name: 'Guajira')
 rumba = Genre.find_by( name: 'Rumba')
 
-user1 = User.fourth.id
+user1 = User.create(name: 'Rachel', email: 'rachelbarker001@gmail.com', password: 'Rachb!94', isAdmin: true)
 
 
 
 
 s = Song.create!([
-    {title: 'Entre Dos Aguas', artist: 'Paco de Lucía', album: 'Entre Dos Aguas', user_id: user1 , region_id: spain.id, genre_id: flamenco.id, favorited: false},
-    {title: 'O Mar Serenou', artist: 'Clara Nunes', album: 'Conto de Areia', user_id: user1, region_id: brazil.id, genre_id: samba.id, favorited: false},
-    {title: 'Este Es el Rey', artist: "La Juan D'Arienzo", album: 'Cortando Clavos', user_id: user1, region_id: southern_cone.id, genre_id: tango.id, favorited: false},
-    {title: 'Acid', artist: 'Ray Barretto', album: 'Acid', user_id: user1, region_id: caribbean.id, genre_id: guajira.id, favorited: false},
-    {title: 'La Vida Es Un Carnaval', artist: 'Celia Cruz', album: 'Mi Vida Es Cantar', user_id: user1, region_id: caribbean.id, genre_id: salsa.id, favorited: false},
-    {title: 'Que Nadie Sepa Mi Sufrir', artist: 'La Sonora Dinamita', album: 'Margarita Y Sus Grandes Exitos', user_id: user1, region_id: andean_states.id, genre_id: cumbia.id, favorited: false}
+    {title: 'Entre Dos Aguas', artist: 'Paco de Lucía', album: 'Entre Dos Aguas', user: user1 , region_id: spain.id, genre_id: flamenco.id, favorited: false},
+    {title: 'O Mar Serenou', artist: 'Clara Nunes', album: 'Conto de Areia', user: user1, region_id: brazil.id, genre_id: samba.id, favorited: false},
+    {title: 'Este Es el Rey', artist: "La Juan D'Arienzo", album: 'Cortando Clavos', user: user1, region_id: southern_cone.id, genre_id: tango.id, favorited: false},
+    {title: 'Acid', artist: 'Ray Barretto', album: 'Acid', user: user1, region_id: caribbean.id, genre_id: guajira.id, favorited: false},
+    {title: 'La Vida Es Un Carnaval', artist: 'Celia Cruz', album: 'Mi Vida Es Cantar', user: user1, region_id: caribbean.id, genre_id: salsa.id, favorited: false},
+    {title: 'Que Nadie Sepa Mi Sufrir', artist: 'La Sonora Dinamita', album: 'Margarita Y Sus Grandes Exitos', user: user1, region_id: andean_states.id, genre_id: cumbia.id, favorited: false}
 ])
 
