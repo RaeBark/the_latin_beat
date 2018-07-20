@@ -10,6 +10,7 @@ Genre.destroy_all
 Region.destroy_all
 Song.destroy_all
 
+
 g = Genre.create!([{name: 'Flamenco'}, {name: 'Salsa'}, {name: 'Cumbia'}, {name: 'Reggaeton'}, {name: 'Bachata'}, {name: 'Samba'}, {name: 'Tango'}, {name: 'Merengue'}, {name: 'Son'}, {name: 'Mambo'}, {name: 'Guajira'}, {name: 'Rumba'}])
 
 
@@ -45,7 +46,6 @@ guajira = Genre.find_by( name: 'Guajira')
 rumba = Genre.find_by( name: 'Rumba')
 
 user1 = User.find(4).id
-
 
 
 
