@@ -45,7 +45,7 @@ mambo = Genre.find_by( name: 'Mambo')
 guajira = Genre.find_by( name: 'Guajira')
 rumba = Genre.find_by( name: 'Rumba')
 
-user1 = User.find(4).id
+user1 = User.fourth.id
 
 
 
