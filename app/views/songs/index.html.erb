@@ -1,44 +1,53 @@
 <h1> SONGS </h1>
-<p> 
-    <% if @heading %>
-        <p>Viewing songs for:</p>
-        <%= @heading %> 
-    <%end%>
-</p>
-<p> 
-    <% if @list_countries %>
-        <p> Countries include: </p>
-        <%= ' ~ ' + @list_countries + ' ~ ' %> 
-    <%end%>
-</p>
+<div class="heading">
+    <p> 
+        <% if @heading %>
+            <h3>Viewing songs for:</h3>
+            <%= @heading %> 
+        <%end%>
+    </p>
+    <p> 
+        <% if @list_countries %>
+            <h3> Countries include: </h3>
+            <%= ' ~ ' + @list_countries + ' ~ ' %> 
+        <%end%>
+    </p>
+</div>
 <%= form_tag('/songs', method: :get) do %>
 <%= hidden_field_tag :genre_id, params[:genre_id]%>
 <%= hidden_field_tag :region_id, params[:region_id]%>
-<%= label_tag 'Sort songs by:'%>
+<div class='sort_label'><%= label_tag 'Sort songs by:'%></div>
  <%= select_tag 'sort_by', options_for_select(['Title', 'Artist', 'Album']), prompt: 'Select one', onchange: 'this.form.submit();'%>
 <% end %>
 <ul>
     <% @songs.each do |s| %>
     <li>
-        <p class="title"> <%= s.title %> </p>
-        <p class="artist"> Artist: <%= s.artist %> </p>
-        <p class="album"> Album: <%= s.album%> </p>
-        <p class="genre"> Genre: <%= s.genre.name%> </p>
-        <p class="region"> Region: <%= s.region.name%> </p>
-        <% unless s.album_cover.attachment.nil? %>
-            <%= image_tag s.album_cover.service_url %>
-        <% else %>
-            <%= image_tag 'album-cover.png' %>
-        <% end %>    
+        <div class="listing">
+            <div class="info">
+                <p class="title"> <%= s.title %> </p>
+                <p class="artist"> Artist: <%= s.artist %> </p>
+                <p class="album"> Album: <%= s.album%> </p>
+                <p class="genre"> Genre: <%= s.genre.name%> </p>
+                <p class="region"> Region: <%= s.region.name%> </p>
+            </div>
+            <div class="pic">
+                <% unless s.album_cover.attachment.nil? %>
+                    <%= image_tag s.album_cover.service_url %>
+                <% else %>
+                    <%= image_tag 'album-cover.png' %>
+                <% end %>
+            </div>
+        </div>    
         <% if !current_user.favorite_songs.exists?(s.id)%>
             <p class="heart">¿Te gusta? <%= link_to '♥', favorites_user_path(current_user, song_id: s.id, region_id: params[:region_id], genre_id: params[:genre_id]), method: :put %></p>
         <% else%>
-            <p> ♥ </p>
+            <p class="faved"> ♥ </p>
         <% end %>
     </li>   
     <% end %>
 </ul>
-
-<p> DON'T SEE A CERTAIN SONG?</p>
-<p> <span id="ohno">¡Ay, caramba!</span> </p>
-<%= link_to 'ADD A SONG +', new_song_path %>
+<div class="footer">
+    <p> DON'T SEE A CERTAIN SONG?</p>
+    <p> <span class="ohno">¡Ay, caramba!</span> </p>
+    <%= link_to 'ADD A SONG +', new_song_path, class: 'browse' %>
+</div>

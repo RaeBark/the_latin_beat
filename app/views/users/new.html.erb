@@ -12,19 +12,19 @@
   <% end %>
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class: 'type-input'%>
   </div>
   <div class="field">
     <%= f.label :email %>
-    <%= f.text_field :email %>
+    <%= f.text_field :email, class: 'type-input'%>
   </div>
   <div class="field">
     <%= f.label :password %>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, class: 'type-input' %>
   </div>
   <div class="field">
     <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'type-input' %>
   </div>
-  <div class="actions"><%= f.submit %></div>
+  <div class='actions'><%= f.submit 'SIGN UP', :class => "create" %></div>
 <% end %>

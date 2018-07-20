@@ -13,34 +13,34 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, class: 'type-input' %>
   </div>
 
   <div class="field">
     <%= form.label :artist %>
-    <%= form.text_field :artist %>
+    <%= form.text_field :artist, class: 'type-input' %>
   </div>
 
   <div class="field">
     <%= form.label :album %>
-    <%= form.text_field :album %>
+    <%= form.text_field :album, class: 'type-input' %>
   </div>
 
 	<div class="field">
-  <%= form.label :album_cover %>
-  <%= form.file_field :album_cover %>
+  <%= form.label :album_cover , class: "fileContainer"%>
+  <%= form.file_field :album_cover, class: "fileContainer" %>
   </div>
 <!-- THESE need to be drop down menus -->
     <div class="field">
-    <%= form.label :region %>
-    <%= form.select(:region_id, content_tag(:option, 'Choose REGION', value: '') + options_from_collection_for_select(Region.all, :id, :name))%>
+    <%= form.label :region, class: 'label' %>
+    <%= form.select(:region_id, content_tag(:option, 'Choose REGION', value: '') + options_from_collection_for_select(Region.all, :id, :name), class: 'some-class')%>
     </div>
 
     <div class="field">
-    <%= form.label :genre %>
+    <%= form.label :genre, class: 'label' %>
     <%= form.select(:genre_id, content_tag(:option, 'Choose GENRE', value: '') + options_from_collection_for_select(Genre.all, :id, :name))%>
     </div>
   <div class="actions">
-    <%= form.submit 'Update Song'%>
+    <%= form.submit 'Update Song', :class => "create", :id => 'update'%>
   </div>
 <% end %>

@@ -1,8 +1,8 @@
-<h1> faved songs </h1>
+<h1> FAVORITED SONGS </h1>
 
 <% if @favorite_songs.empty? %>
-    <p> No favorited songs! Go find some! </p>
-    <%= link_to 'Browse Songs',  pages_browse_path %>
+    <p id="nofaves-container"> <span id="nofaves" class="ohno">No favorited songs! Go find some!</span> </p>
+    <%= link_to 'Browse Songs',  pages_browse_path, class: 'browse' %>
 <% else %>
     <ul>
     <% @favorite_songs.each do |fave| %>
