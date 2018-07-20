@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+    before_action :authorize, only: [:index, :destroy]
     def index
         @favorite_songs = current_user.favorite_songs
     end
