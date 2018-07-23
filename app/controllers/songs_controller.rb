@@ -53,48 +53,6 @@ class SongsController < ApplicationController
             p '&' * 100
             @songs = @songs
         end
-
-
-        # if !params[:genre_id] && !params[:region_id] && !params[:sort_by]
-        #     @songs = Song.all
-        #     # return
-        # end 
-
-
-        # if (params[:region_id] != "" && params[:genre_id] != "")
-        #     @songs = Song.where(region_id: params[:region_id], genre_id: params[:genre_id]) #&& (genre_id: params[:genre_id])
-        #     @heading = ' ~ ' + Region.find(params[:region_id]).name + ' ~  &  ~ ' + Genre.find(params[:genre_id]).name + ' ~ ' 
-        #     @list_countries = Region.find(params[:region_id]).countries
-        # elsif params[:region_id] != "" 
-        #     @songs = Song.where(region_id: params[:region_id])
-        #     @heading = ' ~ ' + Region.find(params[:region_id]).name + ' ~ ' 
-        #     @list_countries = Region.find(params[:region_id]).countries
-        # elsif params[:genre_id] != "" 
-        #     @songs = Song.where(genre_id: params[:genre_id])
-        #     @heading = ' ~ ' + Genre.find(params[:genre_id]).name + ' ~ '
-        # elsif !params[:genre_id] && !params[:region_id]
-        #     @songs = Song.all
-        # elsif !params[:genre_id] && !params[:region_id] 
-        #     @songs = Song.all
-        #     # return 
-        # elsif params[:sort_by] 
-        #     @heading = ''
-        # else
-        #     @songs = Song.all
-        # end
-
-        # if params[:sort_by] 
-        #     if params[:sort_by] == 'Artist'
-        #         p '#' * 100
-        #         @songs = @songs.order('artist ASC')
-        #     elsif params[:sort_by] == 'Title'
-        #         @songs = @songs.order('title ASC')
-        #     elsif params[:sort_by] == 'Album'
-        #         @songs = @songs.order('album ASC')
-        #     end
-        # end
-
-
     end
 
     def new
